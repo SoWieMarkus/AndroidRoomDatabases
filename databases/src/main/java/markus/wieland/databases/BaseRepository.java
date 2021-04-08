@@ -1,5 +1,9 @@
 package markus.wieland.databases;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+
 import markus.wieland.databases.tasks.DeleteItemTask;
 import markus.wieland.databases.tasks.InsertItemTask;
 import markus.wieland.databases.tasks.UpdateItemTask;
@@ -8,11 +12,11 @@ public abstract class BaseRepository<E extends DatabaseEntity, D extends BaseDat
 
     protected final D dataAccessObject;
 
-    public BaseRepository() {
-        this.dataAccessObject = initDataAccessObject();
+    public BaseRepository(@NonNull Application application) {
+        this.dataAccessObject = initDataAccessObject(application);
     }
 
-    public abstract D initDataAccessObject();
+    public abstract D initDataAccessObject(@NonNull Application application);
 
     public D getDataAccessObject() {
         return dataAccessObject;
